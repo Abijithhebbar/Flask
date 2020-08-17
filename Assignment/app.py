@@ -31,7 +31,8 @@ def upload():
 		json.dump(imgobj, json_file)
 	print(json_data)
 	print(type(json_data))
-	return render_template('index.html', filename = filename)
+	return render_template('index.html', filename = filename) # comment this line to only get the json data.
+	# return render_template('index.html', json_data = json_data) # uncomment this line to get only json data.
 
 
 
