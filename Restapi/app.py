@@ -10,22 +10,29 @@ Upload = '/Flask/Restapi'
 app = Flask(__name__)
 app.config['uploadFolder'] = Upload
 api = Api(app)
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 class upload(Resource):
     def post(self):
         file = request.files.get('imagefile', '')
         print(request)
-        filename = file.filename
-        file.save(os.path.join(app.config['uploadFolder'], file.filename))
-        img = Image.open(file)
-        li = []
-        li = img.size
-        imgobj = {
-        "Name" : filename,
-        "Height" : li[1],
-        "Width" : li[0]
-        }
-        return jsonify(imgobj)
+        if file and allowed_file(file.filename):
+            filename = file.filename
+            file.save(os.path.join(app.config['uploadFolder'], file.filename))
+            img = Image.open(file)
+            li = []
+            li = img.size
+            imgobj = {
+            "Name" : filename,
+            "Height" : li[1],
+            "Width" : li[0]
+            }
+            return jsonify(imgobj)
+        else:
+            return "Not an image file"
 
 
 class display(Resource):
