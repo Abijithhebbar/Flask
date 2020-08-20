@@ -15,6 +15,16 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def imgjson(file):
+	img = Image.open(file)
+	width, height = img.size
+	imgobj = {
+	"Name": file.filename,
+	"Width" : width,
+	"Height" : height
+	}
+	return imgobj
+
 class upload(Resource):
     def post(self):
         file = request.files.get('imagefile', '')
@@ -22,15 +32,7 @@ class upload(Resource):
         if file and allowed_file(file.filename):
             filename = file.filename
             file.save(os.path.join(app.config['uploadFolder'], file.filename))
-            img = Image.open(file)
-            li = []
-            li = img.size
-            imgobj = {
-            "Name" : filename,
-            "Height" : li[1],
-            "Width" : li[0]
-            }
-            return jsonify(imgobj)
+            return jsonify(imgjson(file))
         else:
             return "Not an image file"
 
@@ -40,12 +42,11 @@ class display(Resource):
         try:
 
             img = Image.open(fname)
-            li = []
-            li = img.size
+            width, height = img.size
             imgobj = {
             "Name" : fname,
-            "Height" : li[1],
-            "Width" : li[0]
+            "Height" : height,
+            "Width" : width
             }
             return jsonify(imgobj)
         except :
