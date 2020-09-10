@@ -1,0 +1,8 @@
+<!doctype html>
+<title>Hello from Flask</title>
+
+{% if filename %}
+  <img src="{{url_for('static', filename='upload/'+filename) }}">
+{% else %}
+  <h1>no image for whatever reason</h1>
+{% endif %}
