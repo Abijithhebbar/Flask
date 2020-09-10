@@ -50,7 +50,7 @@ class upload(Resource):
     Post method to catch the image
     """
     def post(self):
-        file = request.files.get('') # used to catch the image from the post
+        file = request.files.get('image') # used to catch the image from the post
         try: # try except for checking the not allowed formats
             if file :
                 filename = file.filename
@@ -87,22 +87,12 @@ class display(Resource):
             return  jsonify(errormsg(message))# If the file not found return this
 
 
-class apiupload(Resource):
-
-
-    def post(self):
-        file = request.files.get('')
-        filename = file.filename
-        file.save(os.path.join(app.config['uploadFolder'], file.filename))
-        return jsonify(imgjson(file))
-
 
 
 
 
 
 api.add_resource(upload, "/image", methods = ['POST']) # App route for POST method.
-api.add_resource(apiupload, "/imageapi", methods = ['POST'])
 api.add_resource(display, '/image/<string:fname>') # App route for GET method.
 if __name__ == '__main__':
     app.run(debug=True, port = 4555)
