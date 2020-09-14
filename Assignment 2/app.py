@@ -9,6 +9,10 @@ app = Flask(__name__)
 app.config['uploadFolder'] = Upload
 
 
+
+
+
+
 @app.route("/")
 def index():
 	return render_template("Index.html")
@@ -27,7 +31,6 @@ def upload():
 	files = {'image': open(filename, 'rb')}
 	url = "http://127.0.0.1:4555/image"
 	response = requests.request("POST", url, files=files)
-	print(response)
 	try:
 		jsonfile = response.json()
 	except:
