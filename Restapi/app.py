@@ -52,13 +52,13 @@ class upload(Resource):
     def post(self):
         file = request.files.get('image') # used to catch the image from the post
         try: # try except for checking the not allowed formats
-            if file :
+            if file and allowed_file(file.filename):
                 filename = file.filename
                 file.save(os.path.join(app.config['uploadFolder'], file.filename))
-                print(file)
+                # print(file)
                 return jsonify(imgjson(file))
             else:
-                message = "format not supported"
+                message = "file format not supported"
                 return jsonify(errormsg(message)) # prints the error json message
         except:
             pass
