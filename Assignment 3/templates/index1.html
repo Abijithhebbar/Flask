@@ -27,10 +27,10 @@
 				{% for json in json_data%}
 				{% if json.Name == file %}
 				<div class = "item ">
-					<svg width= "json.get('Width')" height="json.get('Height')"
+					<svg width= "{{json.Width}}" height="{{json.Height}}"
   					xmlns="http://www.w3.org/2000/svg">       
   					<image href="{{ url_for('static', filename='upload/' + file) }}" />
-  					<rect x="10" y="10" width= "json.get('Width') - 20" height="json.get('Height') - 20" fill="none" stroke="red" stroke-width="1">
+  					<rect x="10" y="10" width= "{{json.Width - 20}}" height="{{json.Height - 20}}" fill="none" stroke="red" stroke-width="1">
 					</svg>
 			    </div>
 <!-- 			    {{json.get("Height")}}
