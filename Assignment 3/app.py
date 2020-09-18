@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['uploadFolder'] = Upload
 
 
-@app.route("/")
+@app.route("/", methods = ['POST', 'GET'])
 def index():
 	return render_template("Index.html")
 
@@ -19,6 +19,7 @@ def upload():
 	jsonfile = []
 	filenames = []
 	uploaded_files = request.files.getlist("file[]")
+	slider_value = request.form["value_of_slider"]
 	for file in uploaded_files:
 		filename = file.filename
 		file.save(os.path.join(app.config['uploadFolder'], file.filename))
@@ -31,9 +32,7 @@ def upload():
 		filenames.append(filename)
 		normalpath = "D:\\Flask\\Assignment 3"
 		os.chdir(normalpath)
-	print(filenames)
-	return render_template('index1.html', json_data = jsonfile, filename = filenames) 
-
+	return render_template('index1.html', json_data = jsonfile, filename = filenames, boundary = int(slider_value)) 
 
 
 

@@ -11,17 +11,17 @@
 </head>
 <body>
 
-{% if json_data and filename %}
+{% if json_data and filename and boundary%}
 	
 	<div class = "container">
 		
 		<div class = "carousel slide" id = "myCarousel" data-ride="carousel" data-interval = "5000" data-pause="false">
 			<div class = "carousel-inner">
 				<div class = "item active">
-					<svg width= "1000" height="667"
+					<svg width= "1000" height="647"
   					xmlns="http://www.w3.org/2000/svg" > 
 			        <image href = "{{ url_for('static', filename='upload/hello.jpg') }}" />
-			        <rect x="10" y="10" width= "980" height="647" fill="none" stroke="red" stroke-width="1">
+			        <rect x="{{boundary}}" y="{{boundary}}" width= "{{1000 - boundary * 2}}" height="{{647 - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
 			    </div>
 				{% for file in filename %}
 				{% for json in json_data%}
@@ -29,12 +29,11 @@
 				<div class = "item ">
 					<svg width= "{{json.Width}}" height="{{json.Height}}"
   					xmlns="http://www.w3.org/2000/svg">       
-  					<image href="{{ url_for('static', filename='upload/' + file) }}" />
-  					<rect x="10" y="10" width= "{{json.Width - 20}}" height="{{json.Height - 20}}" fill="none" stroke="red" stroke-width="1">
+  					<image href="{{ url_for('static', filename='upload/' + file) }}" width= "{{json.Width}}" height="{{json.Height}}" />
+  					<rect x="{{boundary}}" y="{{boundary}}" width= "{{json.Width - boundary * 2}}" height="{{json.Height - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
 					</svg>
 			    </div>
-<!-- 			    {{json.get("Height")}}
- -->			    {% endif %}
+			    {% endif %}
 			    {% endfor %}
 			    {% endfor %}
 			</div>
@@ -47,42 +46,8 @@
 	    </a>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% endif %}
-<form method="post" action="/upload" enctype="multipart/form-data">
-	<input type = "file" name = "file[]" draggable = "true" class = "box" multiple = "">
-	<button type="submit" value="Submit"> Submit</button> 
-	</p>
-</form>
+
 
 </body>
 </html>
-
