@@ -2,31 +2,43 @@
 <html>
 <head>
 	<title>Assignment</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<form method="post" action="/upload" enctype="multipart/form-data">
-	<input type = "file" name = "file[]" draggable = "true" class = "box" multiple = "">
-	<br>
-	<br>
-	<div>
-		<p> Choose the padding below:
+	<form method="post" action="/upload" enctype="multipart/form-data">
+		<br>
+		<br>
+		
+		<br>
+		<br>
+		<label for="file-upload" id="file-drag">
+		      <div id="start">
+		        <i class="fa fa-download" aria-hidden="true"></i>
+		        <div>Select a file or drag here</div>
+		        <input type = "file" name = "file[]" draggable = "true" class = "box" multiple = "">
+		      </div>
+		</label>
+    <br><br>
+		<div>
+			<p> Choose the padding below:
 			<br>
-	<input type="range" min="10" max="100" value = "10" name="value_of_slider" step="10" id = "Range_slider" class="slider" />
-	<p>Selected Value: <span id="demo"></span></p>
-	</div>
-	<button type="submit" value="Submit"> Submit</button> 
-	</p>
-</form>
+			<input type="range" min="10" max="100" value = "10" name="value_of_slider" step="10" id = "Range_slider" class="slider" />
+			<p>Selected Value: <span id="demo"></span></p>
+		</div>
+		<button type="submit" value="Submit"> Submit</button> 
+	</form>
+	<!-- 
+	To display the selected slider value
+	 -->
+	<script>
+	var slider = document.getElementById("Range_slider");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value;
 
-<script>
-var slider = document.getElementById("Range_slider");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-</script>
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+	}
+	</script>
 </body>
 </html>
 

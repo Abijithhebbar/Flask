@@ -20,30 +20,31 @@
 				<div class = "item active">
 					<svg width= "1000" height="647"
   					xmlns="http://www.w3.org/2000/svg" > 
-			        <image href = "{{ url_for('static', filename='upload/hello.jpg') }}" />
-			        <rect x="{{boundary}}" y="{{boundary}}" width= "{{1000 - boundary * 2}}" height="{{647 - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
+				        <image href = "{{ url_for('static', filename='upload/hello.jpg') }}" />
+				        <rect x="{{boundary}}" y="{{boundary}}" width= "{{1000 - boundary * 2}}" height="{{647 - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
+				    </svg>
 			    </div>
 				{% for file in filename %}
-				{% for json in json_data%}
-				{% if json.Name == file %}
-				<div class = "item ">
-					<svg width= "{{json.Width}}" height="{{json.Height}}"
-  					xmlns="http://www.w3.org/2000/svg">       
-  					<image href="{{ url_for('static', filename='upload/' + file) }}" width= "{{json.Width}}" height="{{json.Height}}" />
-  					<rect x="{{boundary}}" y="{{boundary}}" width= "{{json.Width - boundary * 2}}" height="{{json.Height - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
-					</svg>
-			    </div>
-			    {% endif %}
-			    {% endfor %}
+					{% for json in json_data%}
+							{% if json.Name == file %}
+							<div class = "item ">
+								<svg width= "{{json.Width}}" height="{{json.Height}}"
+			  					xmlns="http://www.w3.org/2000/svg">       
+				  					<image href="{{ url_for('static', filename='upload/' + file) }}" width= "{{json.Width}}" height="{{json.Height}}" />
+				  					<rect x="{{boundary}}" y="{{boundary}}" width= "{{json.Width - boundary * 2}}" height="{{json.Height - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
+								</svg>
+						    </div>
+					    {% endif %}
+				    {% endfor %}
 			    {% endfor %}
 			</div>
 
-		  <a class = "left carousel-control" href = "#myCarousel" data-slide = "prev">
-	      <span class = "glyphicon glyphicon-chevron-left"></span>
-	    </a>
-	    <a class = "right carousel-control" href = "#myCarousel" data-slide = "next">
-	      <span class = "glyphicon glyphicon-chevron-right"></span>
-	    </a>
+		  	<a class = "left carousel-control" href = "#myCarousel" data-slide = "prev">
+	      		<span class = "glyphicon glyphicon-chevron-left"></span>
+	    	</a>
+		    <a class = "right carousel-control" href = "#myCarousel" data-slide = "next">
+		    	<span class = "glyphicon glyphicon-chevron-right"></span>
+		    </a>
 		</div>
 	</div>
 {% endif %}
