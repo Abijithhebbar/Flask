@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Assignment</title>
+	<title>Picture Page</title>
 	
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
   	<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -25,13 +25,13 @@
 				    </svg>
 			    </div>
 				{% for file in filename %}
-					{% for json in json_data%}
-							{% if json.Name == file %}
+					{% for image in json_data%}
+							{% if image.Name == file %}
 							<div class = "item ">
-								<svg width= "{{json.Width}}" height="{{json.Height}}"
+								<svg width= "{{image.Width}}" height="{{image.Height}}"
 			  					xmlns="http://www.w3.org/2000/svg">       
-				  					<image href="{{ url_for('static', filename='upload/' + file) }}" width= "{{json.Width}}" height="{{json.Height}}" />
-				  					<rect x="{{boundary}}" y="{{boundary}}" width= "{{json.Width - boundary * 2}}" height="{{json.Height - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
+				  					<image href="{{ url_for('static', filename='upload/' + file) }}" width= "{{image.Width}}" height="{{image.Height}}" />
+				  					<rect x="{{boundary}}" y="{{boundary}}" width= "{{image.Width - boundary * 2}}" height="{{image.Height - boundary * 2}}" fill="none" stroke="red" stroke-width="1">
 								</svg>
 						    </div>
 					    {% endif %}

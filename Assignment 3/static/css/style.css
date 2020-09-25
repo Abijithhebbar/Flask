@@ -20,7 +20,7 @@ p {
   font-size: 18px;
   color: $dark-text;
 } 
-.box {
-  border-left: 400px;
-  padding-right: 400px;
+#box {
+/*  margin-left: 200px;
+*/  margin-right: 400px;
 }

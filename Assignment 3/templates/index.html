@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Assignment</title>
+	<title>Home Page</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -15,12 +15,14 @@
 		      <div id="start">
 		        <i class="fa fa-download" aria-hidden="true"></i>
 		        <div>Select a file or drag here</div>
-		        <input type = "file" name = "file[]" draggable = "true" class = "box" multiple = "">
+		        <br>
+		        <div id = "box"><input type = "file" name = "Imagefiles[]" draggable = "true" multiple = ""></div>
 		      </div>
 		</label>
     <br><br>
 		<div>
 			<p> Choose the padding below:
+			<br>
 			<br>
 			<input type="range" min="10" max="100" value = "10" name="value_of_slider" step="10" id = "Range_slider" class="slider" />
 			<p>Selected Value: <span id="demo"></span></p>
@@ -41,4 +43,3 @@
 	</script>
 </body>
 </html>
-
