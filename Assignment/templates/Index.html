@@ -9,22 +9,15 @@
 	<div>
 		<img src="{{ url_for('static', filename='upload/'+filename) }}">
 	</div>
-{% endif %} <!-- comment this div to only get the json data.-->
+{% endif %}
 <form method="post" action="/upload" enctype="multipart/form-data">
-    <dl>
 		<p>
-			<input type="file" name="imgfile" autocomplete="off" required>
+			<input type="file" name="image" autocomplete="off" required>
 		</p>
-    </dl>
     <p>
-		<button type="submit" value="Submit"> Submit</button> 
+		<button type="submit" value="Submit"> Submit </button> 
 	</p>
 </form>
-<!-- {% if json_data %}
-<div>
-	<p> {{ json_data}}
-</div>
-{% endif %} -->  <!-- uncomment this div to only get the json data.-->
 
 </body>
 </html>
